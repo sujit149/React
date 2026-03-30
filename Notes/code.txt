@@ -1,0 +1,25 @@
+// missing number in array
+
+
+class Main {
+    public static void main(String[] args) {
+        // find missing number in array
+        int [] missingNumber = {9,5,6,7,4,2,1,3};
+        
+        // first find out the sum of array using the formula
+        // ((n * (n+1))/2)
+       int n = missingNumber.length + 1;
+        int totalSum = (n*(n+1)/2);
+        int arraySum = 0;
+        
+        // here do the sum of element in array
+        for(int i= 0; i< missingNumber.length; i++) {
+            arraySum = arraySum + missingNumber[i];
+        }
+        
+        int res = totalSum - arraySum;
+        
+        System.out.println(res);
+        
+    }
+}
