@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World</title>
@@ -14,16 +14,14 @@
 <h3>this is h3 tag</h3>
 <h4>this is h4 tag</h4>
 <h5>this is h5 tag</h5>
-    <!-- Including React and ReactDOM from CDN it will help to get the pwer of react if you type in console React or ReactDOM you will get the differant things available due to below lines react is used for Browser development and ReactDom is used for Mobile development -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
     <!-- <script>
         const heading = React.createElement('h1', {}, 'Hello world from React');
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(heading);
     </script> -->
 
-    <script src="App.js"></script>
+    <script type="module" src="App.js"></script>
     <!-- <script>
         const element = document.createElement('h1');
         element.innerHTML = 'Hello world from javascript';
