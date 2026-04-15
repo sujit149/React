@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -13,7 +14,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const res = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.935192&lng=77.6244806999999&page_type=DESKTOP_WEB_LISTING",
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING",
     );
     const json = await res.json();
     console.log(
@@ -63,7 +64,9 @@ const Body = () => {
       </div>
       <div className="res-container">
         {searchListOfRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant.info} />
+          <Link to={`/restaurant/${restaurant.info.id}`} key={restaurant.info.id}>
+            <RestaurantCard resData={restaurant.info} />
+          </Link>
         ))}
         {/* <RestaurantCard/> */}
       </div>

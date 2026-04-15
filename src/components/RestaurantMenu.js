@@ -1,25 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { MENU_API_URL} from "../utils/constants"
 const RestaurantMenu = () => {
+  const [menuData, setMenuData] = useState(null);
+  const [error, setError] = useState("");
+
+  const {resId } = useParams();
+
+  console.log("Restaurant ID:", resId);
+
   useEffect(() => {
     fetchMenu();
   }, []);
 
   const fetchMenu = async () => {
     try {
-      const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=78511&catalog_qa=undefined&submitAction=ENTER");
-      if (!data.ok) {
-        throw new Error(`HTTP error! status: ${data.status}`);
-      }
+      setError("");
+      const data = await fetch(
+        MENU_API_URL
+      );
+
       const json = await data.json();
       console.log(json);
-    } catch (error) {
-      console.error("Failed to fetch menu:", error);
+      const { name, cuisines, costForTwo} = json.data.cards[2].card.card.info;
+      setMenuData({ name, cuisines, costForTwo });
+    } catch (err) {
+      setError(err.message || "Unable to fetch menu data");
     }
-  }
+  };
+
   return (
     <div className="menu">
-      <h1>Name of the restuarant</h1>
-      <h2>Menu</h2>
+      <h1>{menuData?.name}</h1>
+      <h3>{menuData?.cuisines?.join(", ")}</h3>
       <ul>
         <li>Biryani</li>
         <li>Pizza</li>
