@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import useOnlinestatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -25,6 +26,13 @@ const Body = () => {
     );
     setSearchListOfRestaurant(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
   };
+
+  const onlineStatus = useOnlinestatus();
+
+  if (onlineStatus === false) 
+    return (
+    <h1>You are offline</h1>  
+    )
   return (
     <div className="body">
       <div className="filter">
